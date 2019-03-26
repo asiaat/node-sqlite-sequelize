@@ -1,0 +1,15 @@
+https://stackabuse.com/using-sequelize-js-and-sqlite-in-an-express-js-app/
+------------------------------------------------------------------------------------
+
+now follow that command with another one but, this time I will be using the model:generate argument to define my Contact model and its attributes, as follows:
+
+$ node_modules/.bin/sequelize model:generate --name Contact --attributes firstName:string,lastName:string,phone:string,email:string
+The --name parameter is obviously the name of the model to be generated and the --attibutes parameter is followed by the object fields that define it along with their data types. The outputs of this command are two new files:
+
+models/contact.js - a data model to be used in the Node.js application logic code
+migrations/yyyymmddHHMMSS-create-contact.js - a migration script that will issue DDL SQL to create the contacts table in the database
+In addition to the attributes specified in the model:generate command sequelize-cli will also generate an auto-incremented integer id field as well as as createdAt and updatedAt date-link fields.
+
+Next up to do is to run the migration so that the SQLite database will contain the contacts table as follows:
+
+$ node_modules/.bin/sequelize db:migrate
